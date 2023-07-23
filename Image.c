@@ -1,5 +1,4 @@
 #include <pebble.h>
-#include "mainWindow.h"
 
 struct Image {
     uint32_t resource_id;
@@ -9,5 +8,5 @@ struct Image {
 }
 
 static void Image(GRect spatialInfo, uint32_t resource_id) {
-
+    
 }
