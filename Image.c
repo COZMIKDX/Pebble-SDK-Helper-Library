@@ -7,7 +7,8 @@ struct Image {
     BitmapLayer * image_layer;
 }
 
-static void Image(GRect spatialInfo, uint32_t resource_id) {
+static Image * create_image(GRect spatialInfo, uint32_t resource_id) {
+    
     image_dimension_position = spatialInfo;
     image_resource_id = resource_id;
 
@@ -16,4 +17,5 @@ static void Image(GRect spatialInfo, uint32_t resource_id) {
     bitmap_layer_set_compositing_mode(image_layer, GCompOpSet);
     bitmap_layer_set_bitmap(image_layer, image);
     // Add the bitmap layer to the window layer in the Images.c file.
+
 }
