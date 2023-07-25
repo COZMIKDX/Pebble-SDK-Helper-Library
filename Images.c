@@ -11,15 +11,15 @@ static void init_images_struct(struct Images * image_list, uint32_t number_of_im
 
 static void add_image(struct Images *image_list, GRect bounds, uint32_t resource_id, Layer *window_layer)
 {
-    struct Image *image_struct = init_image(bounds, resource_id, Layer * window_layer);
+    struct Image *image_struct = init_image(bounds, resource_id, window_layer);
     push_image(image_list, image_struct);
 }
 
 static void push_image(struct Images * image_list, struct Image * input_image) {
     // Access the pointer for the array on pointers and then write the new image pointer value to the next unused slot. 
-    if (top != (length - 1)) {
+    if (image_list->top != (length - 1)) {
         (image_list->image_array)[image_list->top] = input_image;
-        top = top + 1;
+        image_list->top = image_list->top + 1;
     } else {
         return; // Too many images for the current array. I'll make an array allocate and copy function later.
     }
