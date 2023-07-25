@@ -8,5 +8,5 @@ struct Image
     GBitmap *image;
     BitmapLayer *image_layer;
 };
-static void init_image(GRect spatialInfo, uint32_t resource_id, Layer *window_layer);
+static struct Image * init_image(GRect spatialInfo, uint32_t resource_id, Layer *window_layer);
 static void destroy_image_struct(struct Image *image_struct);
