@@ -13,8 +13,9 @@ static void init_images_struct(struct Images * image_list, uint32_t number_of_im
     image_list->length = number_of_images;
 }
 
-static void add_image(struct Images * image_list, GRect bounds, uint32_t resource_id) {
-    struct Image * image_struct = init_image(bounds, resource_id);
+static void add_image(struct Images *image_list, GRect bounds, uint32_t resource_id, Layer *window_layer)
+{
+    struct Image *image_struct = init_image(bounds, resource_id, Layer * window_layer);
     push_image(image_list, image_struct);
 }
 
