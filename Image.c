@@ -1,4 +1,5 @@
 #include <pebble.h>
+#include "Image.h"
 
 struct Image {
     uint32_t image_resource_id; // I probably won't even need this.
