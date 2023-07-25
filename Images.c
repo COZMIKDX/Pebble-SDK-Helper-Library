@@ -1,4 +1,5 @@
 #include <pebble.h>
+#include "Images.h"
 #include "Image.h"
 
 struct Images {
