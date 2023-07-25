@@ -6,7 +6,7 @@ struct Images {
     struct image ** image_array;  // array of pointers
     uint32_t length = 0;
     uint32_t top = 0;
-}
+};
 
 static void init_images_struct(struct Images * image_list, uint32_t number_of_images) {
     // Access the pointer for the array of pointers and have it point to the memory just allocated.

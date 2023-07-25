@@ -5,7 +5,7 @@ struct Image {
     GRect image_dimension_position;
     Gbitmap * image;
     BitmapLayer * image_layer;
-}
+};
 
 static struct Image * init_image(GRect spatialInfo, uint32_t resource_id, Layer * window_layer) {
     struct Image * image_struct = (struct Image *) malloc(sizeof(struct Image));
