@@ -6,7 +6,7 @@ struct Images
 {
     uint32_t length;
     uint32_t top;
-    struct image **image_array; // array of pointers
+    struct Image **image_array; // array of pointers
 };
 
 static void init_images_struct(struct Images *image_list, uint32_t number_of_images);
