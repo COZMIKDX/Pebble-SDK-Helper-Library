@@ -6,6 +6,7 @@ static void init_images_struct(struct Images * image_list, uint32_t number_of_im
     // Access the pointer for the array of pointers and have it point to the memory just allocated.
     image_list->image_array = (struct Image *) malloc(sizeof(struct Image) * number_of_images);
     image_list->length = number_of_images;
+    image_list->top = 0;
 }
 
 static void add_image(struct Images *image_list, GRect bounds, uint32_t resource_id, Layer *window_layer)
