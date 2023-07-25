@@ -7,8 +7,8 @@ static struct Image * init_image(GRect spatialInfo, uint32_t resource_id, Layer 
     image_struct->image_dimension_position = spatialInfo;
     image_struct->image_resource_id = resource_id;
 
-    image_struct->image = gbitmap_create_with_resource(image_resource_id);
-    image_struct->image_layer = bitmap_layer_create(image_dimension_position);
+    image_struct->image = gbitmap_create_with_resource(image_struct->image_resource_id);
+    image_struct->image_layer = bitmap_layer_create(image_struct->image_dimension_position);
     bitmap_layer_set_compositing_mode(image_struct->image_layer, GCompOpSet);
     bitmap_layer_set_bitmap(image_struct->image_layer, image_struct->image);
     layer_add_child(window_layer, bitmap_layer_get_layer(image_struct->image_layer));
