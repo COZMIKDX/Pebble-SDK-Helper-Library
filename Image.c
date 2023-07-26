@@ -1,7 +1,7 @@
 #include <pebble.h>
 #include "Image.h"
 
-static struct Image * init_image(GRect spatialInfo, uint32_t resource_id, Layer *window_layer) {
+struct Image * init_image(GRect spatialInfo, uint32_t resource_id, Layer *window_layer) {
     struct Image * image_struct = (struct Image *) malloc(sizeof(struct Image));
     
     image_struct->image_dimension_position = spatialInfo;
@@ -16,7 +16,7 @@ static struct Image * init_image(GRect spatialInfo, uint32_t resource_id, Layer 
     return image_struct;
 }
 
-static void destroy_image_struct(struct Image * image_struct) {
+void destroy_image_struct(struct Image * image_struct) {
     gbitmap_destroy(image_struct->image);
     bitmap_layer_destroy(image_struct->image_layer);
 }
