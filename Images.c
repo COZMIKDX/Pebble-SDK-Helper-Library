@@ -17,7 +17,7 @@ void add_image(struct Images *image_list, GRect bounds, uint32_t resource_id, La
     push_image(image_list, image_struct);
 }
 
-static void push_image(struct Images * image_list, struct Image * input_image) {
+void push_image(struct Images * image_list, struct Image * input_image) {
     // Access the pointer for the array on pointers and then write the new image pointer value to the next unused slot.
     if (image_list->top != (image_list->length - 1))
     {
