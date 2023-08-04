@@ -34,11 +34,11 @@ void push_text(struct Texts * text_list, struct Text * input_text) {
 }
 
 void destroy_texts_struct(struct Texts * texts_struct) {
-    for (uint32_t i = 0; i < text_list->length; i++) {
+    for (uint32_t i = 0; i < texts_list->length; i++) {
         // Destroy the image, the image_struct, and then the pointer to the image struct.
-        destroy_text_struct(text_list->text_array[i]);
-        free((text_list->text_array)[i]);
+        destroy_text_struct(texts_list->text_array[i]);
+        free((texts_list->text_array)[i]);
     }
-    free(text_list->text_array);
-    free(text_list);
+    free(texts_list->text_array);
+    free(texts_list);
 }
