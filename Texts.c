@@ -3,7 +3,7 @@
 #include "Text.h"
 
 
-struct Texts * init_texts_struct(uint32_t number_of_texts, GColor text_color, GColor bg_color, uint32_t font_resource_id, layer * window_layer) {
+struct Texts * init_texts_struct(uint32_t number_of_texts, GColor text_color, GColor bg_color, uint32_t font_resource_id, Layer * window_layer) {
     struct Texts * texts_struct = (struct Texts *) malloc(sizeof(struct Texts));
     texts_struct->length = number_of_texts;
     texts_struct->top = 0;
@@ -15,7 +15,7 @@ struct Texts * init_texts_struct(uint32_t number_of_texts, GColor text_color, GC
     return texts_struct;
 }
 
-void add_text(struct Texts * text_list, GRect spatial_info, char * text, layer * window_layer) {
+void add_text(struct Texts * text_list, GRect spatial_info, char * text, Layer * window_layer) {
     struct Text * new_text = init_text(spatial_info, text, text_list->text_color, text_list->bg_color, text_list->font, window_layer);
     push_text(struct Texts * text_list, new_text);
 }
