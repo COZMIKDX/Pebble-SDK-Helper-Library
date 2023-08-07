@@ -4,7 +4,7 @@
 
 struct Images * init_images_struct(uint32_t number_of_images) {
     struct Images *image_list = (struct Images *)malloc(sizeof(struct Images)); // allocate images struct
-    image_list->image_array = (struct Image **)malloc(sizeof(struct Image *));  // allocate images array
+    image_list->image_array = (struct Image **)malloc(sizeof(struct Image *) * number_of_images);  // allocate images array
     image_list->length = number_of_images;
     image_list->top = 0;
     return image_list;
