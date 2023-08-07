@@ -4,27 +4,30 @@
 
 struct Images * init_images_struct(uint32_t number_of_images) {
     struct Images *image_list = (struct Images *)malloc(sizeof(struct Images)); // allocate images struct
-    if (image_list !- NULL){
-        image_list->image_array = (struct Image **)malloc(sizeof(struct Image *) * number_of_images);  // allocate images array
-        image_list->length = number_of_images;
-        image_list->top = 0;
-        return image_list;
-    }
-    else {
-        APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to allocate image array");
+    if (image_list == NULL){
+        APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to allocate images_struct");
         return NULL;
     }
+
+    image_list->image_array = (struct Image **)malloc(sizeof(struct Image *) * number_of_images);  // allocate images array
+    if (image_list->array == NULL) {
+        APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to allocate image array for images_struct");
+        return NULL;
+    }
+
+    image_list->length = number_of_images;
+    image_list->top = 0;
+    return image_list;
 }
 
 void add_image(struct Images *image_list, GRect bounds, uint32_t resource_id, Layer *window_layer)
 {
     struct Image *image_struct = init_image(bounds, resource_id, window_layer);
-    if (image_struct != NULL){
-        push_image(image_list, image_struct);
+    if (image_struct == NULL){
+        APP_LOG(APP_LOG_LEVEL_ERROR, "init_image returned NULL. Cannot push to array.");
+        return NULL;
     }
-    else {
-        APP_LOG(APP_LOG_LEVEL_ERROR, "Image struct pointer is null. Cannot push to array.");
-    }
+    push_image(image_list, image_struct);
 }
 
 void push_image(struct Images * image_list, struct Image * input_image) {
