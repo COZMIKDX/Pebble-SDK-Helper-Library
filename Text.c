@@ -36,4 +36,5 @@ void update_text(struct Text * text_struct, char * text) {
 
 void destroy_text_struct(struct Text * text_struct) {
     text_layer_destroy(text_struct->text_layer);
+    free(text_struct);
 }

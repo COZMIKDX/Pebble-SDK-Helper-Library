@@ -50,9 +50,8 @@ void push_text(struct Texts * text_list, struct Text * input_text) {
 
 void destroy_texts_struct(struct Texts * texts_struct) {
     for (uint32_t i = 0; i < texts_struct->length; i++) {
-        // Destroy the image, the image_struct, and then the pointer to the image struct.
+        // Destroy the text layer and the text_struct
         destroy_text_struct(texts_struct->text_array[i]);
-        free((texts_struct->text_array)[i]);
     }
     free(texts_struct->text_array);
     free(texts_struct);
