@@ -22,6 +22,7 @@ struct Texts * init_texts_struct(uint32_t number_of_texts, GColor text_color, GC
     texts_struct->bg_color = bg_color;
     texts_struct->font = fonts_load_custom_font(resource_get_handle(font_resource_id));
 
+    APP_LOG(APP_LOG_LEVEL_INFO, "texts struct created!");
     return texts_struct;
 }
 
@@ -33,6 +34,7 @@ void add_text(struct Texts * text_list, GRect spatial_info, char * text, Layer *
         return;
     }
     push_text(text_list, new_text);
+    APP_LOG(APP_LOG_LEVEL_INFO, "new text pushed!");
 }
 
 void push_text(struct Texts * text_list, struct Text * input_text) {
@@ -55,4 +57,5 @@ void destroy_texts_struct(struct Texts * texts_struct) {
     }
     free(texts_struct->text_array);
     free(texts_struct);
+    APP_LOG(APP_LOG_LEVEL_INFO, "Texts struct destroyed!");
 }

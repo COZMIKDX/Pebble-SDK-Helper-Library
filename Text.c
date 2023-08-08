@@ -27,6 +27,7 @@ struct Text * init_text(GRect spatial_info, char * text, GColor text_color, GCol
     layer_add_child(window_layer, text_layer_get_layer(text_struct->text_layer));
 
     return text_struct;
+    APP_LOG(APP_LOG_LEVEL_INFO, "Text struct successfully created!");
 }
 
 void update_text(struct Text * text_struct, char * text) {
@@ -37,4 +38,5 @@ void update_text(struct Text * text_struct, char * text) {
 void destroy_text_struct(struct Text * text_struct) {
     text_layer_destroy(text_struct->text_layer);
     free(text_struct);
+    APP_LOG(APP_LOG_LEVEL_INFO, "text struct destroyed!");
 }
