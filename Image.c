@@ -16,7 +16,7 @@ struct Image * init_image(GRect spatial_info, uint32_t resource_id, Layer *windo
         return NULL;
     }
     image_struct->image_layer = bitmap_layer_create(spatial_info);
-    if (image_struct->image == NULL){
+    if (image_struct->image_layer == NULL){
         APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to create bitmap layer");
         return NULL;
     }
