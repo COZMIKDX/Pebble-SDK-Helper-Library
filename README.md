@@ -6,3 +6,9 @@ In a basic project following the example project on the pebble developer website
 For example, setting the layers for images in one place, composition and animated values in another, and deletion handlers set up elsewhere.
 
 With this library I intend for creation of such elements to be more streamlined and their values easily accessible.
+
+# How to use
+1. Copy the source files pairs you would like to use.
+For example, to work with images copy Images.c, Images.h, Image.c, and Image.h to your project.
+
+2. 
