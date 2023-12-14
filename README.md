@@ -22,7 +22,7 @@ Then include the primary header files for that resource type.
 ```c
 #include <pebble.h>
 #include "Images.h"
-#include "Texts.h"
+#include "TextCollection.h"
 ```
 
 2. Create a struct pointer for the type of element you are working with. Create a new struct and assign it's reference to the pointer.
