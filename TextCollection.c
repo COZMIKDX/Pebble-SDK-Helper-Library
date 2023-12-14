@@ -3,7 +3,7 @@
 #include "Text.h"
 
 
-struct TextCollection * init_texts_struct(uint32_t number_of_texts, GColor text_color, GColor bg_color, uint32_t font_resource_id, Layer * window_layer) {
+struct TextCollection * init_text_collection(uint32_t number_of_texts, GColor text_color, GColor bg_color, uint32_t font_resource_id, Layer * window_layer) {
     struct TextCollection * collection = (struct TextCollection *) malloc(sizeof(struct TextCollection));
     if (collection == NULL)
     {
@@ -22,7 +22,7 @@ struct TextCollection * init_texts_struct(uint32_t number_of_texts, GColor text_
     collection->bg_color = bg_color;
     collection->font = fonts_load_custom_font(resource_get_handle(font_resource_id));
 
-    APP_LOG(APP_LOG_LEVEL_INFO, "texts struct created!");
+    APP_LOG(APP_LOG_LEVEL_INFO, "text colletion created!");
     return collection;
 }
 
@@ -51,7 +51,7 @@ void push_text(struct TextCollection * collection, struct Text * input_text) {
     }
 }
 
-void destroy_texts_struct(struct TextCollection * collection) {
+void destroy_text_collection(struct TextCollection * collection) {
     for (uint32_t i = 0; i < collection->length; i++) {
         // Destroy the text layer and the text_struct
         destroy_text_struct(collection->text_array[i]);
