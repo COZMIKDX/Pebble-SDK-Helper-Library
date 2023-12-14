@@ -1,48 +1,48 @@
 #include <pebble.h>
-#include "Texts.h"
+#include "TextCollection.h"
 #include "Text.h"
 
 
-struct Texts * init_texts_struct(uint32_t number_of_texts, GColor text_color, GColor bg_color, uint32_t font_resource_id, Layer * window_layer) {
-    struct Texts * texts_struct = (struct Texts *) malloc(sizeof(struct Texts));
-    if (texts_struct == NULL)
+struct TextCollection * init_texts_struct(uint32_t number_of_texts, GColor text_color, GColor bg_color, uint32_t font_resource_id, Layer * window_layer) {
+    struct TextCollection * collection = (struct TextCollection *) malloc(sizeof(struct TextCollection));
+    if (collection == NULL)
     {
-        APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to allocate texts_struct");
+        APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to allocate collection");
         return NULL;
     }
-    texts_struct->length = number_of_texts;
-    texts_struct->top = 0;
-    texts_struct->text_array = (struct Text **)malloc(sizeof(struct Text *));
-    if (texts_struct->text_array == NULL)
+    collection->length = number_of_texts;
+    collection->top = 0;
+    collection->text_array = (struct Text **)malloc(sizeof(struct Text *));
+    if (collection->text_array == NULL)
     {
-        APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to allocate text array for texts_struct");
+        APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to allocate text array for collection");
         return NULL;
     }
-    texts_struct->text_color = text_color;
-    texts_struct->bg_color = bg_color;
-    texts_struct->font = fonts_load_custom_font(resource_get_handle(font_resource_id));
+    collection->text_color = text_color;
+    collection->bg_color = bg_color;
+    collection->font = fonts_load_custom_font(resource_get_handle(font_resource_id));
 
     APP_LOG(APP_LOG_LEVEL_INFO, "texts struct created!");
-    return texts_struct;
+    return collection;
 }
 
-struct Text * add_text(struct Texts * text_list, GRect spatial_info, char * text, Layer * window_layer) {
-    struct Text * new_text = init_text_struct(spatial_info, text, text_list->text_color, text_list->bg_color, text_list->font, window_layer);
+struct Text * add_text(struct TextCollection * collection, GRect spatial_info, char * text, Layer * window_layer) {
+    struct Text * new_text = init_text_struct(spatial_info, text, collection->text_color, collection->bg_color, collection->font, window_layer);
     if (new_text == NULL)
     {
         APP_LOG(APP_LOG_LEVEL_ERROR, "init_text_struct returned NULL. Cannot push to array.");
         return NULL;
     }
-    push_text(text_list, new_text);
+    push_text(collection, new_text);
     APP_LOG(APP_LOG_LEVEL_INFO, "new text pushed!");
     return new_text;
 }
 
-void push_text(struct Texts * text_list, struct Text * input_text) {
-    if (text_list->top != (text_list->length))
+void push_text(struct TextCollection * collection, struct Text * input_text) {
+    if (collection->top != (collection->length))
     {
-        text_list->text_array[text_list->top] = input_text;
-        text_list->top = text_list->top + 1;
+        collection->text_array[collection->top] = input_text;
+        collection->top = collection->top + 1;
     }
     else
     {
@@ -51,12 +51,12 @@ void push_text(struct Texts * text_list, struct Text * input_text) {
     }
 }
 
-void destroy_texts_struct(struct Texts * texts_struct) {
-    for (uint32_t i = 0; i < texts_struct->length; i++) {
+void destroy_texts_struct(struct TextCollection * collection) {
+    for (uint32_t i = 0; i < collection->length; i++) {
         // Destroy the text layer and the text_struct
-        destroy_text_struct(texts_struct->text_array[i]);
+        destroy_text_struct(collection->text_array[i]);
     }
-    free(texts_struct->text_array);
-    free(texts_struct);
-    APP_LOG(APP_LOG_LEVEL_INFO, "Texts struct destroyed!");
+    free(collection->text_array);
+    free(collection);
+    APP_LOG(APP_LOG_LEVEL_INFO, "TextCollection struct destroyed!");
 }
