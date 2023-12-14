@@ -2,7 +2,7 @@
 #include "ImageCollection.h"
 #include "Image.h"
 
-struct ImageCollection * init_images_struct(uint32_t number_of_images) {
+struct ImageCollection * init_image_collection(uint32_t number_of_images) {
     APP_LOG(APP_LOG_LEVEL_INFO, "Allocating ImageCollection");
     APP_LOG(APP_LOG_LEVEL_INFO, "heap memory %lu", heap_bytes_free());
     APP_LOG(APP_LOG_LEVEL_INFO, "size of ImageCollection struct %lu", sizeof(struct ImageCollection));
@@ -16,13 +16,13 @@ struct ImageCollection * init_images_struct(uint32_t number_of_images) {
     APP_LOG(APP_LOG_LEVEL_INFO, "allocating image array");
     image_list->image_array = (struct Image **)malloc(sizeof(struct Image *) * number_of_images);  // allocate images array
     if (image_list->image_array == NULL) {
-        APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to allocate image array for images_struct");
+        APP_LOG(APP_LOG_LEVEL_ERROR, "Failed to allocate Image array for the ImageCollection");
         return NULL;
     }
-    APP_LOG(APP_LOG_LEVEL_INFO, "image array allocated");
+    APP_LOG(APP_LOG_LEVEL_INFO, "Image array allocated");
     image_list->length = number_of_images;
     image_list->top = 0;
-    APP_LOG(APP_LOG_LEVEL_INFO, "images struct created!");
+    APP_LOG(APP_LOG_LEVEL_INFO, "ImageCollection created!");
     return image_list;
 }
 
