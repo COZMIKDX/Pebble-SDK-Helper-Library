@@ -51,7 +51,7 @@ void push_image(struct ImageCollection * image_list, struct Image * input_image)
 }
 
 // Free what the image struct pointers are pointing at and then free the array holding the pointers.
-void destroy_images_struct(struct ImageCollection * image_list) {
+void destroy_image_collection(struct ImageCollection * image_list) {
     for (uint32_t i = 0; i < image_list->length; i++) {
         // Destroy the image, the image_struct, and then the pointer to the image struct.
         destroy_image_struct(image_list->image_array[i]);
