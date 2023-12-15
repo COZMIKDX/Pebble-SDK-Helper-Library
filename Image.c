@@ -28,6 +28,26 @@ struct Image * init_image_struct(GRect spatial_info, uint32_t resource_id, Layer
     return image_struct;
 }
 
+void update_image(struct Image * image_struct, uint32_t resource_id) {
+    if (image_struct->image != NULL) {
+        gbitmap_destroy(image_struct->image);
+    }
+
+    image_struct->image = gbitmap_create_with_resource(resource_id);
+    image_struct->image_resource_id = resource_id;
+    bitmap_layer_set_bitmap(image_struct->image_layer, image_struct->image);
+
+    GRect old_bounds = image_struct->image_dimension_position;
+    update_image_position(image_struct, old_bounds.origin);
+}
+
+void update_image_position(struct Image * image_struct, GPoint origin) {
+    GRect bitmap_bounds = gbitmap_get_bounds(image_struct->image);
+    GRect frame = GRect(origin.x, origin.y, bitmap_bounds.size.w, bitmap_bounds.size.h)
+    layer_set_frame(image_struct->image_layer, frame);
+    image_struct->image_dimension_position = frame;
+}
+
 void destroy_image_struct(struct Image * image_struct) {
     gbitmap_destroy(image_struct->image);
     bitmap_layer_destroy(image_struct->image_layer);
